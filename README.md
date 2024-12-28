@@ -1,19 +1,111 @@
-# webtest
-This is a simple assignment for us to get to know your coding skills and style better:)
+# **Cloudsine AI: WebTest Take-Home Assignment**
 
-In this assignment, you are asked to 
+*"Clean code always looks like it was written by someone who cares."*  
+— **Robert C. Martin**, *Author of Clean Code*
 
-1. Setup a web server in AWS cloud (we will call this server X).  You can refer to this link to set up a sample LAMP server:
-https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/install-LAMP.html
+Welcome to the Cloudsine AI take-home assignment! This project will help us evaluate your coding skills, problem-solving abilities, and design process. Let's get started!
 
-Notes: If you prefer to run other web servers, eg. NGINX or Flask, you can do so as well.  Your credit card may be required for this but AWS has a free trial account and you should be able to do this assignment without any costs:)
+---
 
-2. Design and build a simple webpage hosted on X that uploads a file and sends it to virustotal API for scanning for virus/malware.   Note that there is a public API that is available for free.
-https://support.virustotal.com/hc/en-us/articles/115002100149-API4.
+## **Objective**
+The goal of this assignment is to create a functional web application hosted on **AWS EC2**. The application will integrate with the VirusTotal API to securely upload and scan files for malware or viruses.
 
-You can code in any web language or framework you are strong in, eg. javascript, Python, PHP, etc.    
+---
 
-3. Using the webpage build in Step 2, upload the files we have included in this github repository for scanning.  After that, please present your results on the webpage hosted on X after the virustotal scan.  You are free to design and add on your own database or file storage/processing system if required.  
+## **Features**
+1. **File Upload and Scanning**: Build a web interface that allows users to upload files and scan them using the [VirusTotal API](https://docs.virustotal.com/reference/overview).
+2. **Result Display**: Present the scan results dynamically and clearly on the webpage.
+3. **Customizable Design**: Add enhancements or optimizations to showcase your skills.
 
-In the next interview, do share with us your setup, your source code and the results from the virustotal scan.  We are interested to hear your thinking and design process, challenges you encountered, how you overcame them, etc in the next session:)  
+---
 
+## **Assignment Steps**
+
+### **Step 1: Set Up the Web Server on EC2**
+1. Launch an **AWS EC2 instance** to host your web application:
+   - Choose an appropriate instance type (e.g., t2.micro under the free tier) and configure the security group for web traffic (HTTP/HTTPS).  
+   - Install and configure your preferred web server software, such as **Apache**, **NGINX**, or any other of your choice.
+2. Ensure the instance is properly configured and accessible for hosting the web application.
+
+---
+
+### **Step 2: Develop the Web Application**
+1. **Core Functionality**:
+   - Implement a **file upload** feature with basic validation (e.g., file size/type).
+   - Integrate with the VirusTotal API to scan the uploaded files.
+   - Dynamically display the scan results on the webpage.
+2. **Preferred Programming Languages**:
+   - While **Golang** or **PHP** are preferred, you may use any language or framework you are comfortable with.
+3. **Security Considerations**:
+   - Handle file uploads securely to prevent malicious file execution.
+   - Sanitize API requests and responses.
+
+---
+
+### **Step 3: Test with Sample Files**
+1. Use the provided sample files in this repository to test your application.
+2. Verify that the scan results are displayed correctly after processing by the VirusTotal API.
+
+---
+
+## **Example Workflow**
+1. A user uploads a file through the web interface.
+2. The file is sent to the VirusTotal API for scanning.  
+3. The API processes the file and returns the results.  
+4. The scan results are displayed on the webpage in a user-friendly format.
+
+---
+
+## **Bonus Section: Optional Enhancements**
+Go the extra mile by implementing one or both of the following:
+
+### **1. Dockerization**
+- Create separate **Dockerfiles** for development and production environments.
+- Use **Docker Compose** to manage multi-container setups (e.g., integrating a PostgreSQL database).
+- Optimize image sizes and configurations for faster deployments.
+
+### **2. CI/CD Pipeline**
+- Automate testing and deployments using a CI/CD pipeline (e.g., GitHub Actions or AWS CodePipeline).
+- Include integration tests to ensure file uploads and VirusTotal API calls function correctly.
+- Securely manage environment variables and secrets using tools like AWS Secrets Manager.
+
+---
+
+## **Evaluation Criteria**
+Your submission will be assessed on:
+1. **Functionality**: Does the application meet the core requirements?  
+2. **Code Quality**: Is the code modular, maintainable, and well-documented?  
+3. **Problem-Solving**: How effectively did you address challenges and errors?  
+4. **Creativity**: Did you add enhancements or optimizations to improve the application?  
+5. **Presentation**: Is the solution polished and user-friendly?  
+
+---
+
+## **Resources**
+- [AWS EC2 Getting Started Guide](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html)  
+- [VirusTotal API Documentation](https://docs.virustotal.com/reference/overview)  
+- [PostgreSQL Quick Start Guide](https://www.postgresql.org/docs/current/tutorial.html)  
+
+---
+
+## **Submission Requirements**
+1. **Documentation**:
+   - Provide a detailed README explaining your setup process, challenges, and solutions.  
+2. **Source Code**:
+   - Share your codebase with clear instructions for running the application.  
+3. **Deployment**:
+   - Host your application on AWS EC2 and provide access for review.  
+4. **Discussion**:
+   - Be prepared to discuss your design choices, challenges faced, and any enhancements implemented.
+
+---
+
+## **Getting Started**
+1. Clone this repository and review the provided sample files.  
+2. Set up your AWS EC2 instance and deploy the web application.  
+3. Test the file upload and VirusTotal integration locally before deploying it to AWS.
+
+---
+
+We look forward to seeing your innovative solutions and thoughtful designs!  
+**Cloudsine AI Team**  
