@@ -108,4 +108,4 @@ Your submission will be assessed on:
 ---
 
 We look forward to seeing your innovative solutions and thoughtful designs!  
-**Cloudsine AI Team**  
+**cloudsineAI Team**  
