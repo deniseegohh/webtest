@@ -15,7 +15,7 @@ The goal of this assignment is to create a functional web application with GenAI
 ## **Features**
 1. **File Upload and Scanning**: Build a web interface that allows users to upload files and scan them using the [VirusTotal API](https://docs.virustotal.com/reference/overview).
 2. **Result Display**: Present the scan results dynamically and clearly on the webpage.
-3. **GenAI Integration**: Integrate with the GenAI to explain the results to a lay end user
+3. **GenAI Integration**: Integrate with a LLM to explain the results to a lay end user
 4. **Customizable Design**: Add enhancements or optimizations to showcase your skills.
 
 ---
@@ -87,7 +87,7 @@ Your submission will be assessed on:
 - [AWS EC2 Getting Started Guide](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html)  
 - [VirusTotal API Documentation](https://docs.virustotal.com/reference/overview)  
 - [PostgreSQL Quick Start Guide](https://www.postgresql.org/docs/current/tutorial.html)  
-- https://ai.google.dev/gemini-api/docs
+- [Gemini API Docs] https://ai.google.dev/gemini-api/docs
 ---
 
 ## **Submission Requirements**
