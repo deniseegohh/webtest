@@ -8,14 +8,15 @@ Welcome to the cloudsineAI take-home assignment! This project will help us evalu
 ---
 
 ## **Objective**
-The goal of this assignment is to create a functional web application hosted on **AWS EC2**. The application will integrate with the VirusTotal API to securely upload and scan files for malware or viruses.
+The goal of this assignment is to create a functional web application with GenAI hosted on **AWS EC2**. The application will integrate with the VirusTotal API to securely upload and scan files for malware or viruses.  Integrate with a free GenAI app such as Gemini API to explain the results to a lay end user.  
 
 ---
 
 ## **Features**
 1. **File Upload and Scanning**: Build a web interface that allows users to upload files and scan them using the [VirusTotal API](https://docs.virustotal.com/reference/overview).
 2. **Result Display**: Present the scan results dynamically and clearly on the webpage.
-3. **Customizable Design**: Add enhancements or optimizations to showcase your skills.
+3. **GenAI Integration**: Integrate with the GenAI to explain the results to a lay end user
+4. **Customizable Design**: Add enhancements or optimizations to showcase your skills.
 
 ---
 
@@ -35,7 +36,7 @@ The goal of this assignment is to create a functional web application hosted on 
    - Integrate with the VirusTotal API to scan the uploaded files.
    - Dynamically display the scan results on the webpage.
 2. **Preferred Programming Languages**:
-   - While **Golang** or **PHP** are preferred, you may use any language or framework you are comfortable with.
+   - While **Golang** or **Python** are preferred, you may use any language or framework you are comfortable with.
 3. **Security Considerations**:
    - Handle file uploads securely to prevent malicious file execution.
    - Sanitize API requests and responses.
@@ -53,6 +54,7 @@ The goal of this assignment is to create a functional web application hosted on 
 2. The file is sent to the VirusTotal API for scanning.  
 3. The API processes the file and returns the results.  
 4. The scan results are displayed on the webpage in a user-friendly format.
+5. Include a button where the GenAI can elaborate on the scan results to a lay end user.
 
 ---
 
@@ -85,7 +87,7 @@ Your submission will be assessed on:
 - [AWS EC2 Getting Started Guide](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html)  
 - [VirusTotal API Documentation](https://docs.virustotal.com/reference/overview)  
 - [PostgreSQL Quick Start Guide](https://www.postgresql.org/docs/current/tutorial.html)  
-
+- https://ai.google.dev/gemini-api/docs
 ---
 
 ## **Submission Requirements**
