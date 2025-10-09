@@ -74,6 +74,8 @@ Go the extra mile by implementing one or both of the following:
 ---
 
 ## **Evaluation Criteria**
+You are free to use AI code assistants such as Cursor and Claude Code.  However, you are expected to be able to understand and explain most of the code.  
+
 Your submission will be assessed on:
 1. **Functionality**: Does the application meet the core requirements?  
 2. **Code Quality**: Is the code modular, maintainable, and well-documented?  
