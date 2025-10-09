@@ -1,4 +1,4 @@
-# **cloudsineAI: WebTest Take-Home Assignment**
+# **CloudsineAI: WebTest Take-Home Assignment**
 
 *"Clean code always looks like it was written by someone who cares."*  
 — **Robert C. Martin**, *Author of Clean Code*
