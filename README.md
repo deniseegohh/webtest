@@ -3,7 +3,7 @@
 *"Clean code always looks like it was written by someone who cares."*  
 — **Robert C. Martin**, *Author of Clean Code*
 
-Welcome to the cloudsineAI take-home assignment! This project will help us evaluate your coding skills, problem-solving abilities, and design process. Let's get started!
+Welcome to the CloudsineAI take-home assignment! This project will help us evaluate your coding skills, problem-solving abilities, and design process. Let's get started!
 
 ---
 
@@ -110,4 +110,4 @@ Your submission will be assessed on:
 ---
 
 We look forward to seeing your innovative solutions and thoughtful designs!  
-**cloudsineAI Team**  
+**CloudsineAI Team**  
