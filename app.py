@@ -4,6 +4,7 @@ import requests
 from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
 from google import genai
+import markdown
 
 ## load environment variables
 load_dotenv()
@@ -75,9 +76,10 @@ def index():
             file.save(filepath)
             scan_result = scan_file_virustotal(filepath)
             ai_explanation = explain_scan_results(scan_result)
+            ai_explanation_html = markdown.markdown(ai_explanation)
             os.remove(filepath)
-            return render_template('index.html', result=scan_result, filename=filename, ai_text=ai_explanation)
-        
+            return render_template('index.html', result=scan_result, filename=filename, ai_text=ai_explanation_html)
+
     return render_template('index.html')
 
 if __name__ == "__main__":

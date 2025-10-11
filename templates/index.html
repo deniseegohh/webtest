@@ -22,7 +22,7 @@
 
     {% if ai_text %}
         <h3>AI Explanation:</h3>
-        <p>{{ ai_text }}</p>
+        <p>{{ ai_text | safe}}</p>
     {% endif %}
 
     {% if result %}
