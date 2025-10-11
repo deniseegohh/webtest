@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Scan App</title>
+</head>
+<body>
+    <h1>Upload a File to Scan</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <button type="submit">Scan File</button>
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    {% if ai_text %}
+        <h3>AI Explanation:</h3>
+        <p>{{ ai_text }}</p>
+    {% endif %}
+
+    {% if result %}
+        <h2>Scan Results for {{ filename }}</h2>
+        <table border="1">
+            <tr>
+                <th>Engine</th>
+                <th>Result</th>
+            </tr>
+            {% for engine, data in result.items() %}
+                <tr>
+                    <td>{{ engine }}</td>
+                    <td>{{ data.category }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</body>
+</html>
