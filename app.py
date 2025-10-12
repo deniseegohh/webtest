@@ -46,7 +46,7 @@ def scan_file_virustotal(filepath):
 def explain_scan_results(scan_result):
     result_string = "\n".join([f"{engine}: {data["category"]}" for engine, data in scan_result.items()])
 
-    prompt = f"Explain the following antivirus scan results to a lay end user: \n{result_string}"
+    prompt = f"Summarise the following antivirus scan results in a short, structured format with bullet points for: \n Overall verdict \n Key findings (if any) \n What the user should do next \n Keep the total under 100 words and use simple language. \n Antivirus scan results: \n{result_string}"
     response = client.models.generate_content(
         model="gemini-2.5-flash", 
         contents=prompt
