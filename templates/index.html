@@ -20,13 +20,19 @@
       {% endif %}
     {% endwith %}
 
-    {% if ai_text %}
-        <h3>AI Explanation:</h3>
-        <p>{{ ai_text | safe}}</p>
-    {% endif %}
-
     {% if result %}
         <h2>Scan Results for {{ filename }}</h2>
+
+        <form method="POST" action="/explain" id="explainForm">
+            <input type="hidden" name="scan_result" value='{{ result | tojson }}'>
+            <button type="submit">Get AI Explanation</button>
+        </form>
+
+        {% if ai_text %}
+            <h3>AI Explanation:</h3>
+            <p>{{ ai_text | safe }}</p>
+        {% endif %}
+
         <table border="1">
             <tr>
                 <th>Engine</th>

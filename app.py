@@ -1,5 +1,5 @@
 import os 
-from flask import Flask, render_template, request, redirect, flash
+from flask import Flask, json, render_template, request, redirect, flash
 import requests
 from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
@@ -75,12 +75,23 @@ def index():
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(filepath)
             scan_result = scan_file_virustotal(filepath)
-            ai_explanation = explain_scan_results(scan_result)
-            ai_explanation_html = markdown.markdown(ai_explanation)
             os.remove(filepath)
-            return render_template('index.html', result=scan_result, filename=filename, ai_text=ai_explanation_html)
+            return render_template('index.html', result=scan_result, filename=filename)
 
     return render_template('index.html')
+
+@app.route('/explain', methods=['POST'])
+def explain():
+    scan_result = request.form.get('scan_result')
+
+    if not scan_result:
+        flash('No scan result provided for explanation')
+        return redirect('/')
+    
+    scan_result = json.loads(scan_result)
+    ai_explanation = explain_scan_results(scan_result)
+    ai_explanation_html = markdown.markdown(ai_explanation)
+    return render_template('index.html', result=scan_result, ai_text=ai_explanation_html)
 
 if __name__ == "__main__":
     app.run(debug=True)
