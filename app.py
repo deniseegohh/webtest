@@ -5,6 +5,7 @@ from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
 from google import genai
 import markdown
+import time
 
 ## load environment variables
 load_dotenv()
@@ -33,9 +34,9 @@ def scan_file_virustotal(filepath):
         response = requests.post(url, headers=headers, files=files)
 
     if response.status_code == 200:
+        time.sleep(2)
         result = response.json()
         analysis_id = result["data"]["id"]
-        import time
         for _ in range(10):
             response = requests.get(f"https://www.virustotal.com/api/v3/analyses/{analysis_id}", headers=headers)
             if response.status_code == 200 and response.json()['data']['attributes']['status'] == "completed":
@@ -85,13 +86,12 @@ def explain():
     scan_result = request.form.get('scan_result')
 
     if not scan_result:
-        flash('No scan result provided for explanation')
-        return redirect('/')
+        return {'error': 'No scan result provided'}, 400
     
     scan_result = json.loads(scan_result)
     ai_explanation = explain_scan_results(scan_result)
     ai_explanation_html = markdown.markdown(ai_explanation)
-    return render_template('index.html', result=scan_result, ai_text=ai_explanation_html)
+    return {'ai_text': ai_explanation_html}
 
 if __name__ == "__main__":
     app.run(debug=True)
