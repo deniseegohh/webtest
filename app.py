@@ -11,14 +11,15 @@ import time
 load_dotenv()
 VIRUSTOTAL_API_KEY = os.getenv("VIRUSTOTAL_API_KEY")
 UPLOAD_FOLDER = 'uploads'
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'jpg', 'png', 'exe', 'js'}
-MAX_CONTENT_LENGTH = 16 * 1024 * 1024
+MAX_CONTENT_LENGTH = 32 * 1024 * 1024
 client = genai.Client()
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = MAX_CONTENT_LENGTH
-app.secret_key = "supersecretkey"
+app.secret_key = os.getenv("SECRET_KEY")
 
 def check_allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -37,15 +38,17 @@ def scan_file_virustotal(filepath):
         time.sleep(2)
         result = response.json()
         analysis_id = result["data"]["id"]
-        for _ in range(10):
+        for _ in range(30):
             response = requests.get(f"https://www.virustotal.com/api/v3/analyses/{analysis_id}", headers=headers)
             if response.status_code == 200 and response.json()['data']['attributes']['status'] == "completed":
                 return response.json()['data']['attributes']['results']
             time.sleep(3)
+    print(response.status_code, response.text)
+
     return {"error": "Scan failed or timed out"}
 
 def explain_scan_results(scan_result):
-    result_string = "\n".join([f"{engine}: {data["category"]}" for engine, data in scan_result.items()])
+    result_string = "\n".join([f"{engine}: {data['category']}" for engine, data in scan_result.items()])
 
     prompt = f"Summarise the following antivirus scan results in a short, structured format with bullet points for: \n Overall verdict \n Key findings (if any) \n What the user should do next \n Keep the total under 100 words and use simple language. \n Antivirus scan results: \n{result_string}"
     response = client.models.generate_content(
@@ -89,9 +92,18 @@ def explain():
         return {'error': 'No scan result provided'}, 400
     
     scan_result = json.loads(scan_result)
-    ai_explanation = explain_scan_results(scan_result)
-    ai_explanation_html = markdown.markdown(ai_explanation)
-    return {'ai_text': ai_explanation_html}
+    
+    try:
+        ai_explanation = explain_scan_results(scan_result)
+        ai_explanation_html = markdown.markdown(ai_explanation)
+        return {'ai_text': ai_explanation_html}
+    except Exception as e:
+        return {'ai_text': '<p>AI explanation unavailable right now.</p>'}
+
+@app.errorhandler(413)
+def file_too_large(error):
+    flash('File is too large. Maximum file size is 32MB.')
+    return redirect(request.url)
 
 if __name__ == "__main__":
     app.run(debug=True)

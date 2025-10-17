@@ -143,6 +143,24 @@
     {% endif %}
 
     <script>
+        if (typeof scanResult !== "undefined") {
+            const cats = Object.values(scanResult).map(v => v.category || "");
+            const malicious = cats.filter(c => c === "malicious").length;
+            const suspicious = cats.filter(c => c === "suspicious").length;
+            const badge = document.getElementById('statusBadge');
+            if (malicious > 0 || suspicious > 0) {
+            badge.textContent = `Threats flagged: ${malicious + suspicious}`;
+            badge.classList.remove('status-clean');
+            badge.classList.add('status-threat');
+            } else {
+            badge.textContent = "No threats detected";
+            badge.classList.remove('status-threat');
+            badge.classList.add('status-clean');
+            }
+        }
+    </script>
+
+    <script>
         const uploadArea = document.getElementById('uploadArea');
         const fileInput = document.getElementById('fileInput');
         const selectedFile = document.getElementById('selectedFile');
